@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node server.js",
-    "server":"nodemon server.js"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client":"npm start --prefix \client",
+    "dev":"concurrently \"npm start server\" \"npm start client\" "
   },
   "author": "ravi",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.1",
+    "concurrently": "^5.0.2",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.8",
