@@ -1,4 +1,6 @@
-const {GraphQLObjectType,GraphQLInt,GraphQLString,GraphQLBoolean,GraphQLList}=require('graphql')
+const {GraphQLObjectType,GraphQLInt,GraphQLString,GraphQLBoolean,GraphQLList,GraphQLSchema}=require('graphql')
+const axios=require('axios')
+
 
 const LaunchType=new GraphQLObjectType({
     name:"launches",
@@ -24,10 +26,25 @@ const RocketType=new GraphQLObjectType({
 //root query
 
 const RootQuery=new GraphQLObjectType({
-    name:"RootQuery",
+    name:"RootQueryType",
     fields:{
         launches:{
-            type:GraphQLList(GraphQLList)
+            type:new GraphQLList(LaunchType),
+            resolve(parents,args){
+                return axios.get('https://api.spacexdata.com/v3/launches')
+                        .then(res=>res.data)
+            }
+        },
+        rockets:{
+            type:new GraphQLList(RocketType),
+            resolve(parents,args){
+                return axios.get('https://api.spacexdata.com/v3/rockets')
+                        .then(res=>res.data)
+            }
         }
     }
+})
+
+module.exports=new GraphQLSchema({
+    query:RootQuery
 })
