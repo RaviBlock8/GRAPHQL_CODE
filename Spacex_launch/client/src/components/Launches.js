@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import gql from 'graphql-tag'
  import {Query} from 'react-apollo'
+ import LaunchItem from './LaunchItem'
 
 const LAUNCHES_QUERY=gql`
     query LaunchesQuery{
@@ -24,7 +25,8 @@ class Launches extends Component {
                             if(load) return <h4>Loading</h4>
                             if(err) console.log(err)
 
-                            return 'success'
+                            console.log(data)
+                            return `sucess`
                         }
                     }
                 </Query>
