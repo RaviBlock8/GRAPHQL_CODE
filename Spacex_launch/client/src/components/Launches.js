@@ -23,10 +23,17 @@ class Launches extends Component {
                     {
                         ({load,err,data})=>{
                             if(load) return <h4>Loading</h4>
-                            if(err) console.log(err)
+                            if(err){
+                                console.log(err)
+                            }else{
+                                //it is printing an object with property launches
+                                //but when i try to access launches
+                                //it says that cannot read property of undefined
+                                console.log(data)
+                                return `sucess`
+                            } 
 
-                            console.log(data)
-                            return `sucess`
+                            
                         }
                     }
                 </Query>
@@ -36,3 +43,7 @@ class Launches extends Component {
 }
 
 export default Launches
+
+
+
+
