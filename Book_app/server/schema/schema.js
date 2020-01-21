@@ -10,6 +10,9 @@ const {
 
 //lodash is just modern javascript utility library
 const _=require('lodash')
+//getting modals
+const Book=require('../modal/book')
+const Author=require('../modal/author')
 
 /*our schema has 3 responsibilities
 1. to define types
@@ -17,19 +20,22 @@ const _=require('lodash')
 3. create entry points inform of root queries
 */
 
-let books=[
-    {name:'tell the wolves im home again',id:'1',genre:'fiction',authorId:'1'},
-    {name:'theory of everything',id:'2',genre:'science',authorId:'2'},
-    {name:'steve jobs',id:'3',genre:'non-fiction',authorId:'3'},
-    {name:'dawn of the universe',id:'2',genre:'science',authorId:'2'},
+/*DUMMY DATA*/
+// let books=[
+//     {name:'tell the wolves im home again',id:'1',genre:'fiction',authorId:'1'},
+//     {name:'theory of everything',id:'2',genre:'science',authorId:'2'},
+//     {name:'steve jobs',id:'3',genre:'non-fiction',authorId:'3'},
+//     {name:'dawn of the universe',id:'2',genre:'science',authorId:'2'},
     
-]
+// ]
 
-let authors=[
-    {name:'carl rifson',age:35,id:'1'},
-    {name:'staeven hawking',age:70,id:'2'},
-    {name:'steve jobs',age:55,id:3}
-]
+// let authors=[
+//     {name:'carl rifson',age:35,id:'1'},
+//     {name:'staeven hawking',age:70,id:'2'},
+//     {name:'steve jobs',age:55,id:3}
+// ]
+
+
 const BookType=new GraphQLObjectType({
     name:'Book',
     //here we have function to overcome any reference errors
@@ -82,7 +88,7 @@ const RootQuery=new GraphQLObjectType({
             args:{id:{type:GraphQLID}},
             resolve:(parent,args)=>{
                 //contains the code to resolve the query
-                return _.find(books,{id:args.id})
+                // return _.find(books,{id:args.id})
             }
         },
 
@@ -90,19 +96,19 @@ const RootQuery=new GraphQLObjectType({
             type:AuthorType,
             args:{id:{type:GraphQLID}},
             resolve:(parent,args)=>{
-                return _.find(authors,{id:args.id})
+                // return _.find(authors,{id:args.id})
             }
         },
         books:{
             type:GraphQLList(BookType),
             resolve:(parent,args)=>{
-                return books
+                // return books
             }
         },
         authors:{
             type:GraphQLList(AuthorType),
             resolve:(parent,args)=>{
-                return authors
+                // return authors
             }
         }
         }
