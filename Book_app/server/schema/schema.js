@@ -5,7 +5,8 @@ const {
     GraphQLString,
     GraphQLSchema,
     GraphQLID,
-    GraphQLInt}=graphql
+    GraphQLInt,
+    GraphQLList}=graphql
 
 //lodash is just modern javascript utility library
 const _=require('lodash')
@@ -19,7 +20,8 @@ const _=require('lodash')
 let books=[
     {name:'tell the wolves im home again',id:'1',genre:'fiction',authorId:'1'},
     {name:'theory of everything',id:'2',genre:'science',authorId:'2'},
-    {name:'steve jobs',id:'3',genre:'non-fiction',authorId:'3'}
+    {name:'steve jobs',id:'3',genre:'non-fiction',authorId:'3'},
+    {name:'dawn of the universe',id:'2',genre:'science',authorId:'2'},
     
 ]
 
@@ -51,10 +53,21 @@ const BookType=new GraphQLObjectType({
 const AuthorType=new GraphQLObjectType({
     name:'Author',
     //here we have function to overcome any reference errors
+    /*since javascript executes code from top to bottom so while assinging space 
+    to variables it will say that Booktype is not defined , you can solve this by
+    putting BookType above author type but in case of two way relationships
+    like this one , its not gonna do anything*/
+
     fields:()=>({
         id:{type:GraphQLID},
         name:{type:GraphQLString},
-        age:{type:GraphQLInt}
+        age:{type:GraphQLInt},
+        books:{
+            type:GraphQLList(BookType),
+            resolve:(parent,args)=>{
+                return _.filter(books,{id:parent.id})
+            }
+        }
     })
 })
 
@@ -72,11 +85,24 @@ const RootQuery=new GraphQLObjectType({
                 return _.find(books,{id:args.id})
             }
         },
+
         author:{
             type:AuthorType,
             args:{id:{type:GraphQLID}},
             resolve:(parent,args)=>{
                 return _.find(authors,{id:args.id})
+            }
+        },
+        books:{
+            type:GraphQLList(BookType),
+            resolve:(parent,args)=>{
+                return books
+            }
+        },
+        authors:{
+            type:GraphQLList(AuthorType),
+            resolve:(parent,args)=>{
+                return authors
             }
         }
         }

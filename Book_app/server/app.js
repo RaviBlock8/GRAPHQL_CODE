@@ -2,6 +2,18 @@ const express=require('express')
 const app=express()
 const graphqlHTTP=require('express-graphql')
 const schema=require('./schema/schema')
+const mongoose=require('mongoose')
+
+mongoose.connect('mongodb://localhost:27017/customercli',{
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+}).then((res)=>{
+
+})
+
+mongoose.connection.once('open',()=>{
+    console.log('connection is open')
+})
 
 app.use('/graphql',graphqlHTTP({
     schema,
