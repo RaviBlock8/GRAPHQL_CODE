@@ -1,6 +1,7 @@
 const express=require('express')
 const app=express()
 const graphqlHTTP=require('express-graphql')
+const Schema=require('./schema/schema')
 
 app.use('/graphql',graphqlHTTP({
     
