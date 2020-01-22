@@ -7,6 +7,8 @@ import {ApolloProvider} from '@apollo/react-hooks'
 
 import BookList from './components/BookList'
 import BookListF from './components/BookListF'
+import AddBook from './components/AddBook'
+import AddBookF from './components/AddBookF'
 
 
 //since we need to make request to graphqlHTTP server
@@ -20,8 +22,10 @@ function App() {
     <ApolloProvider client={client}>
       <div className="App">
         <h1>Starting with front end</h1>
-        <BookList></BookList>
-        {/* <BookListF></BookListF> */}
+        {/* <BookList></BookList> */}
+        <BookListF></BookListF>
+        <AddBook></AddBook>
+        {/* <AddBookF></AddBookF> */}
       </div>
     </ApolloProvider>
     
