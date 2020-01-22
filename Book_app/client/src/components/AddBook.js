@@ -47,6 +47,8 @@ class AddBook extends Component {
     onSubmit=(e)=>{
         e.preventDefault()
         console.log(this.state)
+
+        //ERROR: post request giving status code 400 , bad request
         this.props.addBookMutation({
             variables:{
                 name:this.state.name,
