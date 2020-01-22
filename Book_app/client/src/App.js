@@ -1,25 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import ApolloClient from 'apollo-boost'
+import {ApolloProvider} from '@apollo/react-hooks'
+//components
+
+import BookList from './components/BookList'
+
+
+//since we need to make request to graphqlHTTP server
+//so we will use this apollo client to make request to server
+const client=new ApolloClient({
+  uri:"http://localhost:5000/graphql"
+})
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    //whichever components are inside apolloprovider are able to use data provided by given client
+    <ApolloProvider client={client}>
+      <div className="App">
+        <h1>Starting with front end</h1>
+        <BookList></BookList>
+      </div>
+    </ApolloProvider>
+    
   );
 }
 
