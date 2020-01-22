@@ -15,13 +15,14 @@ mongoose.connect('mongodb://localhost:27017/customercli',{
 mongoose.connection.once('open',()=>{
     console.log('connection is open')
 })
+app.use(cors())
 
 app.use('/graphql',graphqlHTTP({
     schema,
     graphiql:true
 }))
 
-app.use(cors())
+
 
 
 

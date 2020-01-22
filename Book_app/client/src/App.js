@@ -6,6 +6,7 @@ import {ApolloProvider} from '@apollo/react-hooks'
 //components
 
 import BookList from './components/BookList'
+import BookListF from './components/BookListF'
 
 
 //since we need to make request to graphqlHTTP server
@@ -20,6 +21,7 @@ function App() {
       <div className="App">
         <h1>Starting with front end</h1>
         <BookList></BookList>
+        {/* <BookListF></BookListF> */}
       </div>
     </ApolloProvider>
     
