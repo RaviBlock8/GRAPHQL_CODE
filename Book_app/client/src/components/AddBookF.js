@@ -2,7 +2,7 @@ import React from 'react'
 import {addBookMutation} from '../queries/queries'
 import {useMutation} from '@apollo/react-hooks'
 import {gql} from 'apollo-boost'
-import {useQuery} from '@apollo/react-hooks'
+// import {useQuery} from '@apollo/react-hooks'
 
 const getBooksQuery=gql`
     {

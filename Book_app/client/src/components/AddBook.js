@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import {graphql} from 'react-apollo'
 import flowright from "lodash.flowright";
-import {getAuthorsQuery,addBookMutation} from '../queries/queries'
+import {getAuthorsQuery,addBookMutation,getBooksQuery} from '../queries/queries'
 
 
 
@@ -54,7 +54,8 @@ class AddBook extends Component {
                 name:this.state.name,
                 genre:this.state.genre,
                 authorId:this.state.authorId
-            }
+            },
+            refetchQueries:[{query:getBooksQuery}]
         })
     }
 
@@ -67,7 +68,7 @@ class AddBook extends Component {
         }else{
             return data.authors.map(author=>{
                 
-            return (<option key={author.id} value={author.id}>{author.name}</option>)
+            return (<option key={author.name} value={author.id}>{author.name}</option>)
             })
         }
     }
@@ -77,16 +78,16 @@ class AddBook extends Component {
         return (
             <form id="add-book" onSubmit={this.onSubmit.bind(this)}>
                 
-                <div className="field">
+                <div key="named" className="field">
                     <label>Book Name:</label>
                     <input  type="text" onChange={this.onChangeN}/>
                     
                 </div>
-                <div className="field">
+                <div key="genred" className="field">
                     <label>Genre:</label>
                     <input type="text" onChange={this.onChangeG}/>
                 </div>
-                <div className="field">
+                <div key="authord" className="field">
                     <label>Author:</label>
                     <select onChange={this.onChangeS}>
                         {/* <option>Select author</option> */}

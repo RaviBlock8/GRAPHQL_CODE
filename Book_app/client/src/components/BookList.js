@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {graphql} from 'react-apollo'
 import {getBooksQuery} from '../queries/queries'
+import BookDetails from './BookDetails'
 
 //since javascript is not the language of graphql , so we use this to parse it
 //this is how we make our queries
@@ -9,13 +10,19 @@ import {getBooksQuery} from '../queries/queries'
 
 
 class BookList extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            selected:null
+        }
+    }
     dataProvider(){
         let data=this.props.data
         if(data.loading){
             return <div>Loading Books....</div>
         }else{
             return data.books.map(book=>{
-            return <li key={book.id}>{book.name}</li>
+            return <li key={book.id} onClick={(e)=>this.setState({selected:book.id})}>{book.name}</li>
             })
         }
     }
@@ -26,11 +33,13 @@ class BookList extends Component {
         // if(data) console.log(data)
         console.log(this.props)
         return (
-            <div>
+            <div id="listdiv">
+                <h1>Book's Available</h1>
                 <ul id="book-list">
-                    <li >Book-Name</li>
+                    
                     {this.dataProvider()}
                 </ul>
+                <BookDetails bookid={this.state.selected}></BookDetails>
             </div>
         )
     }

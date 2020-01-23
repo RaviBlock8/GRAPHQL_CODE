@@ -1,4 +1,107 @@
-*{
+body{
   background: #eee;
-  font-family:"Nunito"
+  font-family:"Nunito";
+  padding:0;
+  margin:0;
+}
+
+#main h1{
+  color:#444;
+  text-align:center;
+}
+
+#main{
+  box-sizing:border-box;
+  width:60vw;
+  border:1px solid black;
+  height:100vh;
+  
+}
+#listdiv{
+  box-sizing: border-box;
+  padding:0.5rem;
+  height:50vh;
+}
+
+#book-list li{
+  list-style-type: none;
+  display:inline-block;
+  border:3px solid rgb(88, 5, 68);
+  margin:10px;
+  padding:0.7rem;
+  border-radius:5px;
+  background: rgb(255, 255, 255);
+  box-shadow: 2px 2px 8px black;
+  cursor: pointer;
+  transition: box-shadow 500ms;
+}
+#book-list li:hover{
+  box-shadow: 6px 6px 14px rgb(87, 85, 85)
+}
+
+#bookdetails{
+  position: fixed;
+  box-sizing: border-box;
+  top:0;
+  right:0;
+  width:40vw;
+  height:100vh;
+  background: rgb(250, 127, 219);
+  color:white;
+  border:1px solid black;
+  padding-top:8rem;
+}
+
+form{
+  border:1px solid black;
+  height:50vh;
+  box-sizing: border-box;
+  background: white;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+}
+
+form div{
+  padding:5px;
+}
+
+form input , select{
+  width:30vw;
+  padding:1rem;
+  font-size:1rem;
+  border:none;
+  box-shadow:4px 4px 8px black;
+  transition:box-shadow 300ms;
+}
+
+input:focus{
+  box-shadow:1px 1px 2px black;
+}
+
+form label{
+  display:inline-block;
+  width:10vw;
+  text-align: center;
+  font-weight: bold;
+}
+
+form button{
+  display:fixed;
+  left:10px;
+  width:5vw;
+  height:5vw;
+  margin:20px;
+  border-radius:50%;
+  color:white;
+  background:rgb(250, 127, 219);
+  border:none;
+  box-shadow: 2px 2px 6px rgb(87, 85, 85);
+  cursor:pointer;
+  font-size: 1.4rem;
+  transition: box-shadow 500ms;
+}
+
+button:hover{
+  box-shadow: 6px 6px 14px rgb(87, 85, 85);
 }

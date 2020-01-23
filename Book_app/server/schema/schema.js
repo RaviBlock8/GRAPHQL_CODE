@@ -42,7 +42,7 @@ const BookType=new GraphQLObjectType({
     name:'Book',
     //here we have function to overcome any reference errors
     fields:()=>({
-        // id:{type:GraphQLID},
+        id:{type:GraphQLID},
         name:{type:new GraphQLNonNull(GraphQLString)},
         genre:{type:new GraphQLNonNull(GraphQLString)},
         authorId:{type:new GraphQLNonNull(GraphQLID)},
