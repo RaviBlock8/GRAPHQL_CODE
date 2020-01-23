@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import gql from 'graphql-tag'
- import {Query} from 'react-apollo'
+ import {graphql} from 'react-apollo'
  import LaunchItem from './LaunchItem'
 
 const LAUNCHES_QUERY=gql`
@@ -15,34 +15,29 @@ const LAUNCHES_QUERY=gql`
 `;
 
 class Launches extends Component {
+    getData(){
+        let data=this.props.data
+        if(data.loading){
+            return (<div>Loading the list</div>)
+        }else{
+            return data.launches.map((launch)=>{
+                console.log(launch)
+                return(<p>{launch.mission_name}</p>)
+            })
+        }
+    }
     render() {
+        console.log(this.props)
         return (
-            <div>
+            <div style={{color:"white"}}>
                 <h1>Launches</h1>
-                <Query query={LAUNCHES_QUERY}>
-                    {
-                        ({load,err,data})=>{
-                            if(load) return <h4>Loading</h4>
-                            if(err){
-                                console.log(err)
-                            }else{
-                                //it is printing an object with property launches
-                                //but when i try to access launches
-                                //it says that cannot read property of undefined
-                                console.log(data)
-                                return `sucess`
-                            } 
-
-                            
-                        }
-                    }
-                </Query>
+                {this.getData()}
             </div>
         )
     }
 }
 
-export default Launches
+export default graphql(LAUNCHES_QUERY)(Launches)
 
 
 
