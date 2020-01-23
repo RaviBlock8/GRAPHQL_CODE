@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import {gql} from 'apollo-boost'
-import {useQuery} from '@apollo/react-hooks'
+
 import {graphql} from 'react-apollo'
 import flowright from "lodash.flowright";
 import {getAuthorsQuery,addBookMutation} from '../queries/queries'
@@ -49,6 +48,7 @@ class AddBook extends Component {
         console.log(this.state)
 
         //ERROR: post request giving status code 400 , bad request
+        //error solved as i was using wrong mutation name in queries section
         this.props.addBookMutation({
             variables:{
                 name:this.state.name,

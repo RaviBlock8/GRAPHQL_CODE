@@ -22,8 +22,8 @@ function App() {
     <ApolloProvider client={client}>
       <div className="App">
         <h1>Starting with front end</h1>
-        {/* <BookList></BookList> */}
-        <BookListF></BookListF>
+        <BookList></BookList>
+        {/* <BookListF></BookListF> */}
         <AddBook></AddBook>
         {/* <AddBookF></AddBookF> */}
       </div>

@@ -38,12 +38,14 @@ const Author=require('../modal/author')
 
 
 const BookType=new GraphQLObjectType({
+    //upto my understanding graphql will understand this data type by this name
     name:'Book',
     //here we have function to overcome any reference errors
     fields:()=>({
         // id:{type:GraphQLID},
         name:{type:new GraphQLNonNull(GraphQLString)},
         genre:{type:new GraphQLNonNull(GraphQLString)},
+        authorId:{type:new GraphQLNonNull(GraphQLID)},
         //here since giving author id wll not make sense to user
         //we are making another request inside this type to get author data
         author:{
@@ -158,6 +160,7 @@ here this 2 inside parenthesis is argument id
 */
 
 //here we are telling what kind of rootquery we want to use
+//these key names need to be specifically these two
 module.exports=new GraphQLSchema({
     query:RootQuery,
     mutation:Mutation
