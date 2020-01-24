@@ -31,15 +31,15 @@ const addBookMutation=gql`
 const getBookQuery=gql`
     query($id:ID!){
         book(id:$id){
-            id,
-            name,
-            genre,
+            id
+            name
+            genre
             author{
-                name,
-                age,
+                name
+                age
                 books{
-                    id,
-                    name,
+                    id
+                    name
                     genre
                 }
             }

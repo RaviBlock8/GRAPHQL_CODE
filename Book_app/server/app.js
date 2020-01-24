@@ -6,11 +6,14 @@ const mongoose=require('mongoose')
 const cors=require('cors')
 
 mongoose.connect('mongodb://localhost:27017/customercli',{
+    /*mongodb rewrote the tool used to parse connection strngs nd hence its a big change it is 
+        behind a flag*/
     useNewUrlParser:true,
+    // To opt in to using the new topology engine, use the below line:
     useUnifiedTopology:true
 }).then((res)=>{
-
-})
+    console.log(`response:${res}`)
+}).catch((err)=>console.log(err))
 
 mongoose.connection.once('open',()=>{
     console.log('connection is open')

@@ -7,4 +7,5 @@ const authorSchema=new Schema({
 })
 
 
+//instance of a model is an document
 module.exports=mongoose.model('Author',authorSchema)

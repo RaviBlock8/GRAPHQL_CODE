@@ -85,7 +85,7 @@ const AuthorType=new GraphQLObjectType({
 
 //this is our entry point for making any query
 const RootQuery=new GraphQLObjectType({
-    name:'RootQueryType',
+    name:'RootQueyType',
     fields:{
         //this name is important because this is what we will use in front end to make reqest
         book:{
