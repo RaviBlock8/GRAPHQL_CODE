@@ -14,7 +14,8 @@ class AddBook extends Component {
         this.state={
             name:"",
             genre:"",
-            authorId:""
+            authorId:"",
+            comment:""
         }
     }
 
@@ -25,6 +26,9 @@ class AddBook extends Component {
     onChangeG=(e)=>{
         this.setState({genre:e.target.value})
     }
+    onChangeC=(e)=>{
+        this.setState({comment:e.target.value})
+    }
     onChangeS=(e)=>{
         let authorId=""
         switch(e.target.value){
@@ -32,10 +36,10 @@ class AddBook extends Component {
                 authorId="5e27d6410585342444337ab2"
                 break;
             case "carl rifkon brunt":
-                authorId="5e27d6410585342444337ab3"
+                authorId="5e27d6a40585342444337ab3"
                 break;
             case "walter issacson":
-                authorId="5e27d6410585342444337ab4"
+                authorId="5e27d8d20585342444337ab4"
                 break;
             default:
                 authorId=null
@@ -49,14 +53,21 @@ class AddBook extends Component {
 
         //ERROR: post request giving status code 400 , bad request
         //error solved as i was using wrong mutation name in queries section
-        this.props.addBookMutation({
-            variables:{
-                name:this.state.name,
-                genre:this.state.genre,
-                authorId:this.state.authorId
-            },
-            refetchQueries:[{query:getBooksQuery}]
-        })
+        if(this.state.authorId==""||this.state.name==""||this.state.genre==""||this.state.comment==""){
+            e.target.reset()
+        }else{
+            this.props.addBookMutation({
+                variables:{
+                    name:this.state.name,
+                    genre:this.state.genre,
+                    authorId:this.state.authorId,
+                    comment:this.state.comment
+                },
+                refetchQueries:[{query:getBooksQuery}]
+            })
+            e.target.reset()
+        }
+        
     }
 
     displayAuthors(){
@@ -90,9 +101,13 @@ class AddBook extends Component {
                 <div key="authord" className="field">
                     <label>Author:</label>
                     <select onChange={this.onChangeS}>
-                        {/* <option>Select author</option> */}
+                        <option>Select author</option>
                         {this.displayAuthors()}
                     </select>
+                </div>
+                <div key="comment" className="field">
+                    <label>Comment:</label>
+                    <textarea onChange={this.onChangeC}/>
                 </div>
                 <button type="submit">+</button>
             </form>

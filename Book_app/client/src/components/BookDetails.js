@@ -16,12 +16,13 @@ class BookDetails extends Component {
                         <p><b style={{color:"black"}}>Author age:</b>{book.author.age}</p>
                         <div>
                             <h3 style={{color:"black"}}>Other books from this author:</h3>
-                            <ul>
+                            <ul id="books">
                                 {book.author.books.map(book=>{
                                     return (<li key={book.id}>{book.name}</li>)
                                 })}
                             </ul>
                         </div>
+                            <p><b>My View:</b>{book.comment}</p>
 
                   
                     

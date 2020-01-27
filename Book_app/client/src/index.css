@@ -20,7 +20,8 @@ body{
 #listdiv{
   box-sizing: border-box;
   padding:0.5rem;
-  height:50vh;
+  height:40vh;
+  overflow: scroll;
 }
 
 #book-list li{
@@ -54,11 +55,11 @@ body{
 
 form{
   border:1px solid black;
-  height:50vh;
+  height:60vh;
   box-sizing: border-box;
   background: white;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr;
 }
 
@@ -66,7 +67,7 @@ form div{
   padding:5px;
 }
 
-form input , select{
+form input , select,textarea{
   width:30vw;
   padding:1rem;
   font-size:1rem;
@@ -104,4 +105,11 @@ form button{
 
 button:hover{
   box-shadow: 6px 6px 14px rgb(87, 85, 85);
+}
+
+ul#books{
+  list-style-type: none;
+}
+b{
+  color:black;
 }
